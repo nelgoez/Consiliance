@@ -1,5 +1,5 @@
-window.text="null"
-const reciver = (msg, sender, res) => {
-    text = msg.text
-}
-chrome.runtime.onMessage.addListener(reciver); 
+
+chrome.runtime.onMessage.addListener((msg, sender, res) => {
+    console.log("recived at back", msg.text)
+    window.text=msg.text
+}); 

@@ -12,9 +12,10 @@
     "content_scripts":[
         {
             "matches":["<all_urls>"],
-            "js": ["content.js", "popUp.js", "p5.js"]
+            "js": ["content.js", "popUp.js"]
         }
     ],
+    "permissions":["activeTab"],
     "background": {
         "scripts":["background.js"]
     },

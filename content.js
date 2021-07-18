@@ -1,9 +1,20 @@
-var text = window.getSelection().toString() || document.elementFromPoint(
+
+var text = '';
+var center = document.elementFromPoint(
     document.body.offsetWidth / 2, document.body.offsetHeight / 2
-  );
-const getText = () =>{
-    text = window.getSelection().toString()
+)
+var selected = window.getSelection()
+var over = window.onmouseover
+
+const getString = ({ type }) => {
+    if (type == "mouseup" && selected) text = selected.toString()
+    else if (type == "mouseover" && over) text = over.toString()
+    chrome.runtime.sendMessage({ text })
     console.log(text)
-    chrome.runtime.sendMessage({text})
 }
-this.addEventListener("mouseup", getText)
+
+window.addEventListener("mouseup", getString)
+window.addEventListener("mouseover", getString)
+window.addEventListener("load", () => {
+    if (!text.length) text = center.textContent 
+})
